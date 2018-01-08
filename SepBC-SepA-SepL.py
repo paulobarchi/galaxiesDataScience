@@ -1,3 +1,8 @@
+# SepBC-SepA-SepL.py
+# Get geometric histogram separation between two distributions for each non-parametric morphology parameter result.
+# input: results for each class in different files and output file
+# output: csv file with area (SepA), linear (SepL) and final geometric separation (SepBC) for each metric.
+
 import numpy
 import pandas as pd
 from math import sqrt
@@ -37,20 +42,11 @@ def distanceMetric(data1, data2, metrics, outFile):
 		results = [metric, separation_BCA, separation_BCL, final_separation]
 
 		with open(outFile,'a') as f_handle:
-			numpy.savetxt(f_handle, numpy.array([results]), delimiter=',', fmt="%s")		
-
-		# print 'Separation BCA: ', separation_BCA
-		# # print 'a height:', a_height
-		# # print 'b height:', b_height
-		# # print 'c height:', c_height	
-		# print 'Separation_BCL: ', separation_BCL
-		# print 'Separation (final): ', final_separation
-		# return final_separation	
+			numpy.savetxt(f_handle, numpy.array([results]), delimiter=',', fmt="%s")
 
 if __name__ == "__main__":
 	ell = pd.read_csv(sys.argv[1]).dropna()
 	sp = pd.read_csv(sys.argv[2]).dropna()
 	outFile = sys.argv[3]
-	# distanceMetric(ell[metrica], sp[metrica])
-	metrics = ['C', 'A', 'S']
+	metrics = ['CN', 'sA3', 'sS3', 'sH', 'G1', 'sGa']
 	distanceMetric(ell, sp, metrics, outFile)
