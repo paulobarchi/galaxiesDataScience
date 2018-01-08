@@ -1,10 +1,15 @@
+# seqMorph.py
+# Sequentially run CyMorph for stamps in a path
+# input: path to stamps, file extension, output file name and boolean to save (or not) intermediary images
+# output: CyMorph output (non-parametric morphology parameters)
+
 import ConfigParser
 import os
 import sys
 import csv
 
 # run example:
-# python seqMorph.py stamps_6/ .fits result_12-12-17.csv True
+# python seqMorph.py <path_to_stamps> <extension> <output_file_name> <saveFigBoolean>
 
 def removeExtension(fileName):
 	return fileName.split('.')[0]
@@ -32,10 +37,8 @@ cmd = "python main.py config.ini"
 singleResultFile = "Result.csv"
 i = 0
 
-for file in os.listdir(path):
-	
+for file in os.listdir(path):	
 	if file.endswith(extension):
-
 		objId = removeExtension(file)
 		
 		# change config.ini for current file
