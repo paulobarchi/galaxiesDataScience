@@ -1,9 +1,14 @@
+# divideResultPostOptimize.py
+# Divide CyMorph output by metric (for later, easily get the geometric histogram separation between distributions).
+# input: CyMorph output and desired metric.
+# output: csv files with results for different metric configurations.
+
 import pandas as pd
 import sys
 import os
 
-metric = sys.argv[2]
 inputFile = sys.argv[1]
+metric = sys.argv[2]
 
 # read csv file into dataframe
 df = pd.read_csv(inputFile)
