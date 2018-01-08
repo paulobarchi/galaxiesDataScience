@@ -1,3 +1,8 @@
+# normalizeResults.py
+# Normalize results (CyMorph output) for desired metrics.
+# input: result file name.
+# output: (csv) file with normalized results.
+
 import pandas as pd
 import sys
 import numpy
@@ -5,18 +10,12 @@ import numpy
 df = pd.read_csv(sys.argv[1])
 
 index = 'CN'
-
-df[index] = ( df[index] - min(df[index]) ) / \
-	( max(df[index]) - min(df[index]) )
+df[index] = ( df[index] - min(df[index]) ) / ( max(df[index]) - min(df[index]) )
 
 index = 'sA3'
-
-df[index] = ( df[index] - min(df[index]) ) / \
-	( max(df[index]) - min(df[index]) )
+df[index] = ( df[index] - min(df[index]) ) / ( max(df[index]) - min(df[index]) )
 
 index = 'sS3'
-
-df[index] = ( df[index] - min(df[index]) ) / \
-	( max(df[index]) - min(df[index]) )
+df[index] = ( df[index] - min(df[index]) ) / ( max(df[index]) - min(df[index]) )
 
 df.to_csv(sys.argv[2], index=False)
