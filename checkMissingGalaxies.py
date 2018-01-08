@@ -1,3 +1,8 @@
+# checkMissingGalaxies.py
+# Check for missing galaxies in CyMorph output.
+# input: input catalog for CyMorph, CyMorph output and desired file name to store missing galaxies catalog.
+# output: csv file with missing galaxies catalog.
+
 import pandas as pd
 import sys
 import numpy
