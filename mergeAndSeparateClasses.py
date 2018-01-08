@@ -1,3 +1,8 @@
+# mergeAndSeparateClasses.py
+# Merge CyMorph output with Galaxy Zoo 1 catalog and create result files for early- and late-type galaxies.
+# input: CyMorph output, merged result file name, results for early- and late-type galaxies filenames.
+# output: csv files with merged result, results for early- and late-type galaxies.
+
 import pandas as pd
 import sys
 import numpy
@@ -18,12 +23,8 @@ print 'len(merged) = ',len(merged)
 
 resultE = merged[(merged['Zoo1class'] == 'E')]
 print 'len(resultE) = ',len(resultE)
-# resultE = resultE.head(n=1000)
-# print 'len(resultE) = ',len(resultE)
 resultE.to_csv(sys.argv[3], index=False)
 
 resultS = merged[(merged['Zoo1class'] == 'S')]
 print 'len(resultS) = ',len(resultS)
-# resultS = resultS.head(n=1000)
-# print 'len(resultS) = ',len(resultS)
 resultS.to_csv(sys.argv[4], index=False)
