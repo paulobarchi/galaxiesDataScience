@@ -1,9 +1,12 @@
+# getMetricsAvgTime.py
+# Get average time for CyMorph metrics (on screen).
+# input: CyMorph output
+# output: none.
+
 import pandas as pd
 import sys
 
 catalog = pd.read_csv(sys.argv[1])
-
-# print catalog.columns.values
 
 avgCN = catalog["CNTime"].mean() + catalog["RpTime"].mean()# + catalog["maskTime"].mean()
 avgA = catalog["sA3Time"].mean() + catalog["maskTime"].mean()
