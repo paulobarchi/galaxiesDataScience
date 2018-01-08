@@ -1,3 +1,8 @@
+# get10E10SByMag.py
+# Sort by ascending petroMag_r and get 10 early- and 10 late-type galaxies
+# input: input catalog file name, early-type catalog file name, late-type catalog file name and final concatenated file name
+# output: catalog with 10 early- and 10 late-type galaxies by ascending petroMag_r
+
 import pandas as pd
 import sys
 
