@@ -1,3 +1,8 @@
+# plotSepBC_x_k.py
+# Plot different geometric histogram separations versus sExtractor detection threshold (k) values.
+# input: name of file with separation values, desired metric.
+# output: plots.
+
 import sys
 import pandas as pd
 # %matplotlib inline
@@ -11,27 +16,12 @@ inputfile = sys.argv[1]
 metric = sys.argv[2]
 
 df = pd.read_csv(inputfile)
-# fig, ax = plt.subplots(figsize=(8,6))
-
-# bp = df.groupby(metric).plot(kind='kde', ax=ax)
-
-# df.set_index(metric, append=True).unstack().interpolate().plot(subplots=True)
-
-# fig = plt.figure(1)
-# ax = fig.add_subplot(111)
 
 for title, group in df.groupby(metric):
 	plt.plot(group['k'], group['SepRoot'], label=title)
-# 	group.plot(x='k', y='SepRoot', title=title)
 fontP = FontProperties()
 fontP.set_size('small')
 pylab.legend(prop = fontP, loc=2, bbox_to_anchor=(0.5, -0.1), ncol=2, borderaxespad=0.)
-
-
-# handles, labels = ax.get_legend_handles_labels()
-# lgd = ax.legend(handles, labels, loc='upper right', bbox_to_anchor=(0,0))
-# ax.grid('on')
-# plt.legend(bbox_to_anchor=(1.2, 1.2), loc=10, ncol=1)
 
 plt.gcf().subplots_adjust(bottom=0.55, left=0.55)
 # plt.tight_layout()
