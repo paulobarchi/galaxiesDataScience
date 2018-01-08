@@ -1,3 +1,8 @@
+# separateFiles2Optimize.py
+# Separate catalog into 2 files (1000 early- and 1000 late-type galaxies).
+# input: catalog, early- and late-type galaxies file names.
+# output: (csv) files with catalog for 1000 early- and 1000 late-type galaxies.
+
 import pandas as pd
 import os
 import sys
