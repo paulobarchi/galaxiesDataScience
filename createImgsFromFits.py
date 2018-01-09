@@ -1,4 +1,4 @@
-# createPngsFromFits.py
+# createImgsFromFits.py
 # Create images (pngs) from galaxy and masks fit(s).
 # input: input path, extension of files and output path.
 # output: galaxy and masks images (pngs).
