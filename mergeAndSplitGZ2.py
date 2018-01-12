@@ -6,7 +6,6 @@
 
 import pandas as pd
 import sys
-import numpy
 
 # read input
 sdssCatalog = pd.read_csv(sys.argv[1])
