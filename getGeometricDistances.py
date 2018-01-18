@@ -47,6 +47,6 @@ def distanceMetric(data1, data2, metrics, outFile):
 if __name__ == "__main__":
 	ell = pd.read_csv(sys.argv[1]).dropna()
 	sp = pd.read_csv(sys.argv[2]).dropna()
-	metrics = [metric for metric in sys.argv[3].split(',')]  # list of metrics to evaluate
+	metrics = [metric for metric in sys.argv[3].split(',')] # list of metrics to evaluate
 	outFile = sys.argv[4]
 	distanceMetric(ell, sp, metrics, outFile)
