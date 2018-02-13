@@ -1,4 +1,4 @@
-# SepBC-SepA-SepL.py
+# getGeometricDistances.py
 # Get geometric histogram separation between two distributions for each non-parametric morphology parameter result.
 # input: results for each class in different files, list of metrics and output file
 # output: csv file with area (SepA), linear (SepL) and final geometric separation (SepBC) for each metric.
