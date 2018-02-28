@@ -1,5 +1,6 @@
 # saveMagnifiedImagesFromFits.py
 # save magnified images (with good visualization) from fits
+# requisites: need to have stiff installed
 # input: csv file with list of galaxies fits, input path to fits, output path to save images
 # output: magnified images (png) saved to output path
 
