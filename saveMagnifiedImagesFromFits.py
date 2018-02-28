@@ -4,6 +4,7 @@
 # input: csv file with list of galaxies fits, input path to fits, output path to save images
 # output: magnified images (png) saved to output path
 
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import astropy.io.fits as fits
@@ -38,13 +39,19 @@ def saveImgFromId(fileId, image_data, output_path):
 inputFile = pd.read_csv(sys.argv[1])
 inputPath = sys.argv[2]
 outputPath = sys.argv[3]
+howMany = int(sys.argv[4])
 extension = '.fits'
 
+i = 0
+
 for f in inputFile["Id"]:
-	print "File: " + inputPath + str(f) + extension
-	image_data = readFITSIMG(inputPath+str(f)+extension)
-	saveImgFromId(str(f), image_data, outputPath)
-	cmd = "rm stiff.tif stiff.xml"
-	process = os.popen(cmd)
-	process.read()
-	exit()
+	if (i < howMany):
+		print "File: " + inputPath + str(f) + extension
+		image_data = readFITSIMG(inputPath+str(f)+extension)
+		saveImgFromId(str(f), image_data, outputPath)
+		cmd = "rm stiff.tif stiff.xml"
+		process = os.popen(cmd)
+		process.read()
+		i += 1
+	else:
+		exit()
