@@ -50,8 +50,6 @@ train, test = train_test_split(df, test_size = testSize)
 
 x_train_data = train[features]
 y_train_data = train['class']
-x_test_data = test[features]
-y_test_data = test['class']
 
 # set parameter of depth to decision tree
 parameters = {'max_depth':range(3,20)}
@@ -66,21 +64,25 @@ dt_fit = gridSearchDTclf.fit(x_train_data, y_train_data)
 scores = cross_val_score(gridSearchDTclf, x_train_data, y_train_data, cv=20)
 
 # predict & get conf. matrix
-y_true, y_pred = y_test_data, dt_fit.predict(x_test_data)
-confMatrix2print = np.matrix(confusion_matrix(y_true, y_pred))
+if (testSize > 0.0):
+	x_test_data = test[features]
+	y_test_data = test['class']
+	y_true, y_pred = y_test_data, dt_fit.predict(x_test_data)
+	confMatrix2print = np.matrix(confusion_matrix(y_true, y_pred))
 
 with open(output_filename, 'a') as out_file:
 	out_file.write('\n\n ### GridSearchCV - DecisionTreeClassifier ###')
 	out_file.write('\n Best score for best estimator: ' + str(gridSearchDTclf.best_score_))
 	out_file.write('\n Best parameters: ' + str(gridSearchDTclf.best_params_))
 	out_file.write('\n Trainning accuracy: %0.2f (+/- %0.2f)' % (scores.mean(), scores.std() * 2))
-	out_file.write('\n\n Classification Report:\n ')
-	out_file.write(classification_report(y_true, y_pred))
-	out_file.write('\n Confusion Matrix:\n')
-	# out_file.write(confMatrix2print)
-	for line in confMatrix2print:
-		out_file.write(' ')
-		np.savetxt(out_file, line, fmt='%.2f')
+	if (testSize > 0.0):
+		out_file.write('\n\n Classification Report:\n ')
+		out_file.write(classification_report(y_true, y_pred))
+		out_file.write('\n Confusion Matrix:\n')
+		# out_file.write(confMatrix2print)
+		for line in confMatrix2print:
+			out_file.write(' ')
+			np.savetxt(out_file, line, fmt='%.2f')
 
 # save trained model
 joblib.dump(gridSearchDTclf, sys.argv[6])
