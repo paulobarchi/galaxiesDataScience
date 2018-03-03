@@ -5,7 +5,7 @@
 
 import pandas as pd
 import sys
-
+import numpy as np
 
 # read input
 df1 = pd.read_csv(sys.argv[1])
@@ -18,4 +18,13 @@ print 'len(df1) = ',len(df1)
 print 'len(df2) = ',len(df2)
 print 'len(diff) = ',len(diff)
 
-diff.to_csv(outputFile, index=False)
+# supress scientific notation
+toSupress = ['dr7objid', 'run', 'camcol', 'rerun', 'field']
+
+for col in toSupress:
+	diff[col] = diff[col].astype(np.int64)
+
+print diff.head(2)
+
+# diff.to_csv(outputFile, index=False, float_format='{:f}'.format, encoding='utf-8')
+diff.to_csv(outputFile, index=False, encoding='utf-8')
