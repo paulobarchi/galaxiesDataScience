@@ -7,29 +7,25 @@ import tarfile
 inputCat = pd.read_csv(sys.argv[1])
 gType = sys.argv[2]
 source_dir = sys.argv[3]
+outPath = sys.argv[4]
 
 idCol = 'dr7objid'
 column = 'gz2class'
 inputCat.loc[:,idCol] = inputCat.loc[:,idCol].astype(np.int64)
-# gType = ['Ei','Ec','Er','Sa','Sb','Sc','Sd','SBa','SBb','SBc','SBd']
-# print "Total: " + str(len(inputCat))
-out = tarfile.open(gType+'.tar.gz', mode='w')
-# open tarfile
+
+out = tarfile.open(outPath+gType+'.tar.gz', mode='w')
 
 for index, row in inputCat.iterrows():
 	if (row[column] == gType):
-		# print "index: " + str(index)
-		# print "file: " + str(row['Id'])+'_wout-cleaning_stamp5.fit'
-		# print "gType: " + gType + "; row[class]: " + row[column]
 		try:
-			out.add(
+			outE.add(
 				# path+file
-				name = source_dir+str(row[idCol])+'_wout-cleaning_stamp5.fit',
+				name = source_dir+gType+'/'+str(row[id_sdss])+'.png',
 				# (new) file name in tar file
-				arcname = str(row[idCol])+'.fit')
-		except Exception: 
+				arcname = str(row[id_sdss])+'.png')
+		except Exception:
   			pass
-		
+  			
 	print "Done %.5f %%" % ( (float(index)/float(len(inputCat))) * 100 )
 
 out.close()
